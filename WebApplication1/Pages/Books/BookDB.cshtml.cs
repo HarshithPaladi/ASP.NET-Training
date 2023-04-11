@@ -25,7 +25,7 @@ namespace WebApplication1.Pages.Books
                     Books book = new Books();
                     book.Id = (string)reader["book_code"];
                     book.BookName = (string)reader["book_title"];
-                    book.Author = (string)reader["publication"];
+                    book.Author = (string)reader["author"];
                     book.Publication = (string)reader["publication"];
                     book.Price = (double)reader["price"];
 

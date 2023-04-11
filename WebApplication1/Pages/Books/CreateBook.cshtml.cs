@@ -22,7 +22,7 @@ namespace WebApplication1.Pages.Books
             book.Author = Request.Form["author"];
             book.book_edition = Convert.ToInt32(Request.Form["edition"]);
             book.category = Request.Form["category"];
-            book.Price = Convert.ToSingle(Request.Form["price"]);
+            book.Price = Convert.ToDouble(Request.Form["price"]);
             book.published_date = Convert.ToDateTime(Request.Form["date_published"]);
             book.Publication = Request.Form["publication"];
             if (book.Price> 1000)
@@ -67,7 +67,7 @@ namespace WebApplication1.Pages.Books
         public DateTime published_date { get; set; }
         public int book_edition { get; set; }
 
-        public float Price { get; set; }
+        public double Price { get; set; }
         public string rack_num { get; set; }
         public DateTime date_arrival { get; set; }
         public string supplier_id { get; set; }
