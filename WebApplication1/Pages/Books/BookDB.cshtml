@@ -1,0 +1,35 @@
+﻿@page
+@model WebApplication1.Pages.Books.BookDBModel
+@{
+
+}
+<br>
+<div>
+    <a class="btn-primary btn-sm" href="/Books/CreateBook">CREATE NEW BOOK</a>
+</div>
+<h1>Books List</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Publication</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+<tbody>
+    @foreach(var book in Model.bookList)
+    {
+        <tr>
+            <td>@book.Id</td>
+            <td>@book.BookName</td>
+            <td>@book.Author</td>
+            <td>@book.Publication</td>
+            <td>@book.Price</td>
+        </tr>
+    }
+</tbody>
+
+</table>
+<p>@BookDBModel.str</p>

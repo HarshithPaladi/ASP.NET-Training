@@ -1,0 +1,85 @@
+﻿@page
+@model WebApplication1.Pages.Books.CreateBookModel
+@{
+}
+<p>Create a book</p>
+@if (Model.errorMessage.Length > 0)
+{
+    <div id="error-div">
+        <br><div class="alert-warning"> @Model.errorMessage </div>  <br />
+        <button type="button" class="btn-close" data-dismiss="alert"
+                onclick="
+    const element = document.getElementById('error-div');
+                element.remove();
+"></button>
+    </div>
+}
+
+@if (Model.successMessage.Length > 0)
+{
+    <div id="success-div">
+        <br><div class="alert-success"> @Model.successMessage </div>  <br />
+        <button type="button" class="btn-close"
+                onclick="
+    const element = document.getElementById('success-div');
+                element.remove();
+"></button>
+    </div>
+}
+<form method="post">
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label">Book ID</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="id" value="" required />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label">Book Name</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="title" value="" required/>
+        </div>
+    </div>
+        <div class="row mb-3">
+        <label class="col-sm-1 col-form-label">Book Category</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="category" value="" required/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label">Book Author</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="author" value="" required />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label">Book Publication</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="publication" value="" required />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label">Book Edition</label>
+        <div class="col-sm-4">
+            <input type="number" class="form-control" name="edition" value="" required />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label">Book Price</label>
+        <div class="col-sm-4">
+            <input type="number" class="form-control" name="price" value="" required />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label">Publication Date</label>
+        <div class="col-sm-4">
+            <input type="date" class="form-control" name="date_published" value="" required />
+        </div>
+    </div>
+    <div>
+        <button type="submit" class="btn-primary">Submit</button>
+    </div>
+
+</form>
+<div>
+    <a class="btn-primary" href="/">Cancel</a>
+</div>
