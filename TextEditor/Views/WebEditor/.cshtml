@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<TextEditor.Models.WebEditorModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "List";
 }
 
-<h1>Index</h1>
+<h1>List</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,13 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.doc_id)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.author)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.title)
+                @Html.DisplayNameFor(model => model.doc_id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.data)
@@ -37,15 +34,12 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.author)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.doc_id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.author)
-            </td>
-                <td class="text-truncate-container-title">
-                    @Html.DisplayFor(modelItem => item.title)
-                </td>
-            <td class="text-truncate-container">
                 @Html.DisplayFor(modelItem => item.data)
             </td>
             <td>
@@ -55,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.date_updated)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id = item.doc_id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.doc_id  }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.doc_id  })
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

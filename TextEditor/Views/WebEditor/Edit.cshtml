@@ -23,6 +23,11 @@
                 <span asp-validation-for="doc_id" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="title" class="control-label"></label>
+                <input asp-for="title" class="form-control" value="@Model.title" />
+                <span asp-validation-for="title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="data" class="control-label"></label>
                 <textarea asp-for="data" style="width:1100px;height:360px" class="form-control" value="@Model.data" >
                     </textarea>

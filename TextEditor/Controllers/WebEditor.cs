@@ -37,6 +37,7 @@ namespace TextEditor.Controllers
                     WebEditorModel editor = new();
 
                         editor.doc_id = (int)reader["doc_id"];
+                        editor.title = (string)reader["doc_title"];
                         editor.data = (string)reader["doc_data"];
                         editor.date_created = (DateTime)reader["date_created"];
                         editor.date_updated = (DateTime)reader["date_updated"];
@@ -80,6 +81,7 @@ namespace TextEditor.Controllers
                     SqlCommand command = new SqlCommand("insertData", connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@doc_id", editor.doc_id);
+                    command.Parameters.AddWithValue("@doc_title", editor.title);
                     command.Parameters.AddWithValue("@doc_data", editor.data);
                     command.Parameters.AddWithValue("@date_created", DateTime.Now);
                     command.Parameters.AddWithValue("@date_updated", DateTime.Now);
@@ -126,6 +128,7 @@ namespace TextEditor.Controllers
                 {
 
                     doc.doc_id = (int)reader["doc_id"];
+                    doc.title = (string)reader["doc_title"];
                     doc.data = (string)reader["doc_data"];
                     doc.date_created = (DateTime)reader["date_created"];
                     doc.date_updated = (DateTime)reader["date_updated"];
@@ -155,6 +158,7 @@ namespace TextEditor.Controllers
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@doc_id", docs.doc_id);
                     cmd.Parameters.AddWithValue("@date_updated", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@doc_title", docs.title);
                     cmd.Parameters.AddWithValue("@doc_data", docs.data);
                     cmd.Parameters.AddWithValue("@author", docs.author);
                     cmd.ExecuteNonQuery();
