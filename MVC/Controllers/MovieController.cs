@@ -162,6 +162,7 @@ namespace MVC.Controllers
         }
         void DeleteMovie(MovieModel movie)
         {
+
             _GetSqlConnection.Open();
             SqlCommand cmd = new SqlCommand("deleteMovies", _GetSqlConnection);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -177,6 +178,7 @@ namespace MVC.Controllers
         {
             try
             {
+                Console.WriteLine($"id - {id},{movie.id}");
                 DeleteMovie(movie);
                 return RedirectToAction(nameof(Index));
             }

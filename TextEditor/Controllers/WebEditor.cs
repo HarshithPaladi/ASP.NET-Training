@@ -58,7 +58,7 @@ namespace TextEditor.Controllers
         public ActionResult Details(int id)
         {
 
-            return View(GetDocs());
+            return View(GetDocsObj(id));
         }
         public ActionResult List(WebEditorModel editor)
         {
@@ -175,16 +175,37 @@ namespace TextEditor.Controllers
         // GET: Editor/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(GetDocsObj(id));
         }
-
-        // POST: Editor/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public void DeleteDoc(WebEditorModel doc)
         {
             try
             {
+                using (SqlConnection connection = new SqlConnection(configuration.GetConnectionString("DB")))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("deleteDoc", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    Console.WriteLine($"id is {doc.doc_id}, titlw is {doc.title}");
+                    command.Parameters.AddWithValue("@doc_id", doc.doc_id);
+                    int queries = command.ExecuteNonQuery();
+                    Console.WriteLine(queries);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        // POST: Editor/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, WebEditorModel doc)
+        {
+            try
+            {
+                Console.WriteLine($"in delete id {id},{doc.doc_id},{doc.title}");
+                DeleteDoc(GetDocsObj(id));
                 return RedirectToAction(nameof(Index));
             }
             catch

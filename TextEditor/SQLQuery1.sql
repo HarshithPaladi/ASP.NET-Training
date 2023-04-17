@@ -24,3 +24,11 @@ create or alter procedure editDoc
 as
 update webEditor set doc_data = @doc_data,doc_title = @doc_title,date_updated=@date_updated,author=@author 
 where doc_id=@doc_id;
+
+-- 
+create or alter procedure deleteDoc
+@doc_id int
+as
+delete webEditor where doc_id=@doc_id;
+
+exec deleteDoc 2;
