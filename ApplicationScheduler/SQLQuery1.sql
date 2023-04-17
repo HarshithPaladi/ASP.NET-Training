@@ -1,8 +1,8 @@
 ﻿Create table users(
 		userId int not null primary key,
-		name nchar(50) not null,
+		userName nchar(50) not null,
 		emailId nchar(50) not null,
-		password nchar(50) not null,
+		userPassword nchar(50) not null,
 		phnumber int
 		);
 Create table appointments(

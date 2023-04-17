@@ -22,7 +22,7 @@ namespace ApplicationScheduler.Controllers
         {
             return View();
         }
-        public bool checkUser(string userId, string password)
+        public bool checkUser(int userId, string password)
         {
             try
             {
@@ -34,10 +34,10 @@ namespace ApplicationScheduler.Controllers
                 string getPassword = "";
                 while (reader.Read())
                 {
-                    getPassword = (string)reader["password"];
+                    getPassword = (string)reader["userPassword"];
                 }
                 Console.WriteLine($"given password: {password}\t actual password: {getPassword}");
-                if (password.Equals(getPassword))
+                if (password.Equals(getPassword.Trim()))
                 {
                     Console.WriteLine("Correct Password");
                     return true;
@@ -54,14 +54,15 @@ namespace ApplicationScheduler.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(string userId, string password, Users user)
+        public IActionResult Index(int userId, string password, Users user)
         {
             try
             {
                 Console.WriteLine("in post index: ");
                 if (checkUser(userId, password))
                 {
-                    return RedirectToAction("UserPage", "User", new { userId = userId });
+                    Console.WriteLine("inside check user");
+                    return RedirectToAction("UserPage", "Users", new { userId = userId });
                 }
                 else
                 {
