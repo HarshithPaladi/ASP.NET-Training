@@ -31,10 +31,10 @@ namespace TextEditor.Controllers
                     SqlCommand cmd = new SqlCommand("select * from webEditor", connection);
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    WebEditorModel editor = new();
 
                     while (reader.Read())
                     {
+                    WebEditorModel editor = new();
 
                         editor.doc_id = (int)reader["doc_id"];
                         editor.data = (string)reader["doc_data"];
@@ -151,11 +151,12 @@ namespace TextEditor.Controllers
                 using (SqlConnection connection = new SqlConnection(configuration.GetConnectionString("DB")))
                 {
                     connection.Open();
-                    SqlCommand cmd = new SqlCommand("update_doc", connection);
+                    SqlCommand cmd = new SqlCommand("editDoc", connection);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@doc_id", docs.doc_id);
-                    cmd.Parameters.AddWithValue("@date_created", docs.date_created);
                     cmd.Parameters.AddWithValue("@date_updated", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@doc_data", docs.data);
+                    cmd.Parameters.AddWithValue("@author", docs.author);
                     cmd.ExecuteNonQuery();
 
                 }

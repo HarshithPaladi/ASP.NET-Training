@@ -16,3 +16,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+.text-truncate-container {
+    width: 600px;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+}
+
+    .text-truncate-container p {
+    }

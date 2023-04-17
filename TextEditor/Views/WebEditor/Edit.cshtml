@@ -24,15 +24,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="data" class="control-label"></label>
-                <input asp-for="data" class="form-control" value="@Model.data" />
+                <textarea asp-for="data" style="width:1100px;height:360px" class="form-control" value="@Model.data" >
+                    </textarea>
                 <span asp-validation-for="data" class="text-danger"></span>
             </div>
+            <!--
             <div class="form-group">
                 <label asp-for="date_created" class="control-label"></label>
                 <input asp-for="date_created" class="form-control" value="@Model.date_created.ToString("yyyy-MM-dd hh:mm")" />
                 <span asp-validation-for="date_created" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            -->
+            <div class="form-group" hidden>
                 <label asp-for="date_updated" class="control-label"></label>
                 <input asp-for="date_updated" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd hh:mm")" />
                 <span asp-validation-for="date_updated" class="text-danger"></span>
