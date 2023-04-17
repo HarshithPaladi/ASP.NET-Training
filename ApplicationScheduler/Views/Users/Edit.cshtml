@@ -1,14 +1,12 @@
-﻿@model ApplicationScheduler.Models.SchedulerModel
+﻿@model ApplicationScheduler.Models.Appointment
 
 @{
     ViewData["Title"] = "Edit";
 }
-<div>
-    <a asp-action="UserPage" asp-route-userId="@ViewBag.userId" class="btn btn-primary btn-sm">Back</a>
-</div>
+
 <h1>Edit</h1>
 
-<h4>SchedulerModel</h4>
+<h4>Appointment</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -63,6 +61,16 @@
                 <label asp-for="place" class="control-label"></label>
                 <input asp-for="place" class="form-control" />
                 <span asp-validation-for="place" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="purpose" class="control-label"></label>
+                <input asp-for="purpose" class="form-control" />
+                <span asp-validation-for="purpose" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="reference" class="control-label"></label>
+                <input asp-for="reference" class="form-control" />
+                <span asp-validation-for="reference" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

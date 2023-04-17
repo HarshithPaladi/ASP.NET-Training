@@ -46,11 +46,42 @@ namespace ApplicationScheduler.Controllers
             }
             return user;
         }
-        public List<SchedulerModel> getdateAppointments(int userid)
+        public void insertAppointments(Appointment appointment)
+        {
+            try
+            {
+                Console.WriteLine("in inesrt appointments");
+                connection.Open();
+                SqlCommand command = new SqlCommand("addAppointment", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@userid", appointment.Id);
+                command.Parameters.AddWithValue("@starttime", appointment.startTime);
+                command.Parameters.AddWithValue("@endtime", appointment.endTime);
+                command.Parameters.AddWithValue("@createdtime", appointment.CreatedDate);
+                command.Parameters.AddWithValue("@updatedtime", DateTime.Now);
+                command.Parameters.AddWithValue("@desc", appointment.Description);
+                command.Parameters.AddWithValue("@status", appointment.Status);
+                command.Parameters.AddWithValue("@place", appointment.place);
+                command.Parameters.AddWithValue("@meet_person", appointment.meeting_person);
+                command.Parameters.AddWithValue("@purpose", appointment.purpose==null?null:appointment.purpose);
+                command.Parameters.AddWithValue("@reference", appointment.reference);
+                
+                Console.WriteLine("completed parameters");
+                command.ExecuteNonQuery();
+                connection.Close();
+                Console.WriteLine("executed the query");
+                Console.WriteLine("exit insert method");
+            }
+            catch(SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public List<Appointment> getdateAppointments(int userid)
         {
             // All appointments of that user
             Console.WriteLine("entered get date appointmensts method");
-            List<SchedulerModel> appointmentsList = new List<SchedulerModel>();
+            List<Appointment> appointmentsList = new List<Appointment>();
             try
             {
                 connection.Open();
@@ -62,7 +93,7 @@ namespace ApplicationScheduler.Controllers
                 Console.WriteLine("reader excecuted");
                 while (reader.Read())
                 {
-                    SchedulerModel a = new SchedulerModel();
+                    Appointment a = new Appointment();
 
                     a.Id = (int)reader["Id"];
                     a.Name = (string)reader["title"];
@@ -118,18 +149,22 @@ namespace ApplicationScheduler.Controllers
         // POST: ApplicationScheduler/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Users user, Appointment appointment)
         {
             try
             {
-                return RedirectToAction(nameof(UserPage));
+                insertAppointments(appointment);
+                Console.WriteLine("using user obj in create post method: user id: " + user.userId);
+
+                return RedirectToAction("UserPage", "User", user);
             }
             catch
             {
                 return View();
             }
         }
-        public ActionResult List(int userId)
+
+        public ActionResult List(string userId)
         {
             if (userId == null)
             {

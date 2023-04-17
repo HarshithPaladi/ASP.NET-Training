@@ -1,11 +1,9 @@
-﻿@model IEnumerable<ApplicationScheduler.Models.SchedulerModel>
+﻿@model IEnumerable<ApplicationScheduler.Models.Appointment>
 
 @{
     ViewData["Title"] = "List";
 }
-<div>
-    <a asp-action="UserPage" asp-route-userId="@ViewBag.userId" class="btn btn-primary btn-sm">Back</a>
-</div>
+
 <h1>List</h1>
 
 <p>
@@ -44,6 +42,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.place)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.purpose)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reference)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -79,6 +83,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.place)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.purpose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reference)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

@@ -30,5 +30,14 @@ create or alter procedure insertUser
 as
 insert into users values (@userid,@username,@useremail,@userpassword,@userphonenumber);
 
-
+-- Insert Appointments
+create or alter procedure addAppointment
+@userid int,@starttime datetime,@endtime datetime, @createdtime datetime, @updatedtime datetime,
+@desc varchar(255), @status nchar(20),@place nchar(20), @meet_person nchar(20),
+@purpose nchar(20), @reference nchar(50)
+as
+insert into appointments values (
+@userid,@starttime,@endtime,@createdtime,
+@updatedtime,@desc,@status,@place,@meet_person,@purpose,@reference
+);
 
